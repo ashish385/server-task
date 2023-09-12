@@ -48,7 +48,39 @@ exports.signup = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    
+    try {
+        const { email, password } = req.body;
+        // check validation
+        if (!email || !password) {
+           return res.status(400).json({
+                success: false,
+                message:"All field required!"
+            })
+        }
+
+        // user exist or not
+        const user = await User.findOne({ email });
+        if (!user) {
+            // Return 401 Unauthorized status code with error message
+            return res.status(401).json({
+                success: false,
+                message:"User is not registered, Please signup first"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+			user,
+			message: `User Login Success`,
+        })
+    } catch (error) {
+        console.log(error);
+         console.log(error.message);
+        return res.status(500).json({
+            success: false,
+            message: "Login failure, Please try again! ",
+        })
+    }
 }
 
 
