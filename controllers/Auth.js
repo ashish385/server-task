@@ -4,10 +4,10 @@ require("dotenv").config();
 // signup handler function
 exports.signup = async (req, res) => {
     try {
-        const { name, email, password, confirmpassword } = req.body;
+        const { name, email, password, confirmPassword } = req.body;
 
         // validation
-        if (!name || !email || !password || !confirmpassword) {
+        if (!name || !email || !password || !confirmPassword) {
             return res.status(400).json({
                 success: false,
                 message:"All field required!"
