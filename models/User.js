@@ -15,6 +15,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+     accountType: {
+        type: String,
+        required: true,
+        enum: ["Admin", "User"],
+    },
+     additionalDetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Profile",
+    },
+      token: {
+        type:String,
+    },
 })
 
 module.exports = mongoose.model("User", userSchema);
