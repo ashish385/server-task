@@ -128,9 +128,8 @@ exports.login = async (req, res) => {
         }
         else {
             return res.status(200).json({
-            success: true,
-			user,
-			message: `User Login Success`,
+            success: false,
+			message: `Wrong password`,
         })
         }
 

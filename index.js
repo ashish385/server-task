@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 
 const userRoutes = require("./routes/User");
+const profileRoutes = require("./routes/Profile");
 
 const database = require("./config/database");
+const cookieParser = require("cookie-parser");
 
 const dotenv = require("dotenv");
 
@@ -16,9 +18,11 @@ database.connect();
 
 // middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 // routes
 app.use("/api/v1/auth",userRoutes);
+app.use("/api/v1/auth",profileRoutes);
 
 
 // def routes

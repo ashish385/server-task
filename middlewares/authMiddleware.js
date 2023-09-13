@@ -3,12 +3,14 @@ require("dotenv").config();
 const User = require("../models/User")
 // auth
 exports.auth = async (req, res, next) => {
+    // console.log("cookie",req.cookies.token,"body",req.body,"heade," );
     try {
         // check json web token
         // console.log(req.cookies.token);
         // extract token
-        console.log("coo",req.cookies.token,"body",req.body,"header",req.header("Authorisation").replace("Bearer ", ""));
-        const token = await req.cookies.token || req.body || req.header("Authorisation").replace("Bearer ", "");
+        console.log("cookie:",req.cookies.token,"body:",req.body,);
+        const token = await req.cookies.token || req.body   ;
+        console.log("token:",token);
 
         // if token is missing , then return response
         if (!token) {
