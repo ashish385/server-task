@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+const adminRoutes = require("./routes/Admin")
 const userRoutes = require("./routes/User");
 const profileRoutes = require("./routes/Profile");
 
@@ -22,7 +23,8 @@ app.use(cookieParser());
 
 // routes
 app.use("/api/v1/auth",userRoutes);
-app.use("/api/v1/auth",profileRoutes);
+app.use("/api/v1/profile",profileRoutes);
+app.use("/api/v1/admin",adminRoutes);
 
 
 // def routes

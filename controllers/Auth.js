@@ -148,10 +148,17 @@ exports.login = async (req, res) => {
 exports.changePassword =async (req, res) => {
     try {
         // Get user data from req.user
-		const userDetails = await User.findById(req.user.id);
+		// const userDetails = await User.findById(req.user.id);
 
         // Get old password, new password, and confirm new password from req.body
-        const { oldPassword, newPassword, confirmNewPassword } = req.body;
+        const { email, oldPassword, newPassword, confirmNewPassword } = req.body;
+        const userDetails = await User.findOne({ email: email });
+        if (!userDetails) {
+            return res.status(402).json({
+                success: false,
+                message: "user does not exist",
+            })
+        }
 
         // Validate old password
 		const isPasswordMatch = await bcrypt.compare(

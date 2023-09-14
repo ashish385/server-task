@@ -20,7 +20,7 @@ router.post("/login", login);
 router.post("/signup", signup);
 
 // route for changing password
-router.post("/change-password",auth, changePassword);
+router.put("/change-password",auth, changePassword);
 
 // Export the router for use in the main application
 module.exports = router
